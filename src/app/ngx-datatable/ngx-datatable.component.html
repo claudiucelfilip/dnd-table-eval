@@ -1,0 +1,47 @@
+<app-search></app-search>
+<app-pagination [page]="page" [length]="length" (numPages)="numPages = $event"></app-pagination>
+<ngx-datatable style="width: 90%" class="material" [rows]="rows | async" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5" [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)" (select)='onSelect($event)'>
+    <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Title">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Title}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Flags">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Version">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Version}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Artist">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Artist && row.Artist.name}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Loc">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.LocalClients}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Writer">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.WriterString}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Charts">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.ChartPosition}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Notes">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.NotesCount}}
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>

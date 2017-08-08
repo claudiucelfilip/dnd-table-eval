@@ -1,0 +1,3 @@
+<pagination class="pagination-sm" (ngModelChange)="page.next($event)" [ngModel]="page | async" [totalItems]="length | async" [itemsPerPage]="10" [maxSize]="4" [boundaryLinks]="true"
+    [rotate]="false" (numPages)="numPages.emit = $event">
+</pagination>

@@ -1,0 +1,4 @@
+<app-search></app-search>
+<app-pagination [page]="page" [length]="length" (numPages)="numPages = $event"></app-pagination>
+<ng-table [config]="config.sorting" (tableChanged)="onChangeTable(config)" [rows]="rows | async" [columns]="columns">
+</ng-table>
