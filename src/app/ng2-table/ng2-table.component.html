@@ -1,4 +1,18 @@
-<app-search></app-search>
-<app-pagination [page]="page" [length]="length" (numPages)="numPages = $event"></app-pagination>
-<ng-table [config]="config.sorting" (tableChanged)="onChangeTable(config)" [rows]="rows | async" [columns]="columns">
-</ng-table>
+<section class="ng2-table-section">
+    <app-search></app-search>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div dnd-droppable class="panel zone panel-info" (onDropSuccess)="simpleDrop=$event">
+                <div class="panel-heading">Place to drop</div>
+                <div class="panel-body">
+                    <pre *ngIf="simpleDrop">{{simpleDrop | json }}</pre>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <app-pagination [page]="page" [length]="length" (numPages)="numPages = $event"></app-pagination>
+            <ng-table [config]="config.sorting" (tableChanged)="onChangeTable(config)" [rows]="rows | async" [columns]="columns"></ng-table>
+        </div>
+    </div>
+</section>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SongsService } from '../songs.service';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -8,7 +8,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 @Component({
     selector: 'app-ng2-table',
     templateUrl: './ng2-table.component.html',
-    styleUrls: ['./ng2-table.component.css']
+    styleUrls: ['./ng2-table.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class Ng2TableComponent implements OnInit {
 

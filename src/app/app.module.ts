@@ -6,8 +6,8 @@ import { Ng2TableComponent } from './ng2-table/ng2-table.component';
 import { NgxDatatableComponent } from './ngx-datatable/ngx-datatable.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule } from '@angular/forms';
-import { DndModule } from 'ng2-dnd';
-import { Ng2TableModule } from 'ng2-table';
+
+import { Ng2TableModule } from './table/ng-table-module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -32,7 +32,7 @@ import { PaginationComponent } from './pagination/pagination.component';
         Ng2TableModule,
         HttpClientModule,
         PaginationModule.forRoot(),
-        DndModule.forRoot(),
+
         RouterModule.forRoot([{
             path: '',
             component: HomeComponent

@@ -1,0 +1,21 @@
+.ng2-table-section .table {
+    font-size: 12px;
+}
+.ng2-table-section .table th,
+.ng2-table-section .table td {
+    padding: 5px;
+}
+
+.ng2-table-section .zone {
+    background: #f2f2f2;
+    border: solid 1px #eee;
+    min-height: 200px;
+    border-radius: 4px;
+}
+.ng2-table-section .panel-body {
+    font-size: 12px;
+}
+
+.ng2-table-section .dnd-drag-start {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
