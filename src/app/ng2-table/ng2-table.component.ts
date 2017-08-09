@@ -3,6 +3,7 @@ import { SongsService } from '../songs.service';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
     selector: 'app-ng2-table',
@@ -57,17 +58,17 @@ export class Ng2TableComponent implements OnInit {
         sorting: { columns: this.columns },
     };
     public length: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-    public page: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    public page: BehaviorSubject<number> = new BehaviorSubject<number>(1);
     constructor(private songs: SongsService) {
-        this.page.subscribe((val) => this.getPage(val));
+        this.page
+            .distinctUntilChanged((x, y) => x === y)
+            .subscribe((val) => {
+                this.getPage(val);
+            });
     }
 
     ngOnInit() {
 
-    }
-
-    onPageChange(event) {
-        this.getPage(event.page);
     }
 
     getPage(page) {

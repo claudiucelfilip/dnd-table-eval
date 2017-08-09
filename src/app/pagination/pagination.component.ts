@@ -14,8 +14,10 @@ export class PaginationComponent implements OnInit {
 
     }
 
+    pageChange(page) {
+        this.page.next(page);
+    }
     ngOnInit() {
-        this.page.subscribe((val) => console.log(val));
         this.length.subscribe((val) => console.log(val));
     }
 
