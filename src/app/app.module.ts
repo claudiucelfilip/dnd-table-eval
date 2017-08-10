@@ -7,7 +7,7 @@ import { NgxDatatableComponent } from './ngx-datatable/ngx-datatable.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule } from '@angular/forms';
 
-import { Ng2TableModule } from './table/ng-table-module';
+import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +15,8 @@ import { SearchComponent } from './search/search.component';
 import { SongsService } from './songs.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './pagination/pagination.component';
+
+import { DndModule } from 'ng2-dnd';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     imports: [
         BrowserModule,
         NgxDatatableModule,
+        DndModule.forRoot(),
         FormsModule,
         Ng2TableModule,
         HttpClientModule,

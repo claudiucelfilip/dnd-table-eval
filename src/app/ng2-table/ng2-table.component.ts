@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SongsService } from '../songs.service';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { DragDropConfig, DragImage } from 'ng2-dnd';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 
@@ -14,7 +15,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 export class Ng2TableComponent implements OnInit {
 
     public rows: Observable<any>;
-
+    public dragImage: HTMLImageElement;
     public columns: Array<any> = [
         {
             title: 'Selected',
@@ -60,12 +61,18 @@ export class Ng2TableComponent implements OnInit {
     };
     public length: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     public page: BehaviorSubject<number> = new BehaviorSubject<number>(1);
-    constructor(private songs: SongsService) {
+    constructor(private songs: SongsService, config: DragDropConfig) {
         this.page
             .distinctUntilChanged((x, y) => x === y)
             .subscribe((val) => {
                 this.getPage(val);
             });
+
+        let img = document.createElement('img');
+        img.onload = () => {
+            config.dragImage = new DragImage(img);
+        };
+        img.src = 'http://kryogenix.org/images/hackergotchi-simpler.png';
     }
 
     ngOnInit() {

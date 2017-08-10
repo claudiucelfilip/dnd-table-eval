@@ -12,7 +12,13 @@
         </div>
         <div class="col-sm-9">
             <app-pagination [page]="page" [length]="length" (numPages)="numPages = $event"></app-pagination>
-            <ng-table [config]="config.sorting" (tableChanged)="onChangeTable(config)" [rows]="rows | async" [columns]="columns"></ng-table>
+            
+            <ng-template #customRowTpl let-cellClick="cellClick" let-columns="columns" let-getData="getData" let-sanitize="sanitize" let-rows="rows">
+                <tr *ngFor="let row of rows"  dnd-draggable [dragEnabled]="true" [dragData]="row">
+                    <td *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
+                </tr>
+            </ng-template>
+            <ng-table [config]="config.sorting" (tableChanged)="onChangeTable(config)" [rows]="rows | async" [columns]="columns" [rowTemplate]="customRowTpl"></ng-table>
         </div>
     </div>
 </section>
