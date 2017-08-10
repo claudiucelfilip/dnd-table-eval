@@ -1,24 +1,21 @@
 <section class="ng2-table-section">
     <app-search></app-search>
 
+    <ul class="nav nav-tabs">
+        <li role="presentation">
+            <a class="nav-link" routerLinkActive="active" routerLink="search">Search</a>
+        </li>
+        <li role="presentation">
+            <a class="nav-link" routerLinkActive="active" routerLink="Playlists.aspx">Manage Playlists</a>
+        </li>
+        <li role="presentation">
+            <a class="nav-link" routerLinkActive="active" routerLink="Pitches.aspx">Manage Pitches</a>
+        </li>
+        <li role="presentation">
+            <a class="nav-link" routerLinkActive="active" routerLink="manage-tags">Manage Tags</a>
+        </li>
+    </ul>
     <div class="row">
-        <div class="col-sm-3">
-            <div dnd-droppable class="panel zone panel-info" (onDropSuccess)="simpleDrop=$event">
-                <div class="panel-heading">Place to drop</div>
-                <div class="panel-body">
-                    <pre *ngIf="simpleDrop">{{simpleDrop | json }}</pre>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-9">
-            <app-pagination [page]="page" [length]="length" (numPages)="numPages = $event"></app-pagination>
-            
-            <ng-template #customRowTpl let-cellClick="cellClick" let-columns="columns" let-getData="getData" let-sanitize="sanitize" let-rows="rows">
-                <tr *ngFor="let row of rows"  dnd-draggable [dragEnabled]="true" [dragData]="row">
-                    <td *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
-                </tr>
-            </ng-template>
-            <ng-table [config]="config.sorting" (tableChanged)="onChangeTable(config)" [rows]="rows | async" [columns]="columns" [rowTemplate]="customRowTpl"></ng-table>
-        </div>
+        <router-outlet></router-outlet>
     </div>
 </section>

@@ -15,8 +15,12 @@ import { SearchComponent } from './search/search.component';
 import { SongsService } from './songs.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './pagination/pagination.component';
-
+import { TreeModule } from 'angular-tree-component';
 import { DndModule } from 'ng2-dnd';
+import { MusicSearchComponent } from './music-search/music-search.component';
+import { ManagePlaylistsComponent } from './manage-playlists/manage-playlists.component';
+import { ManagePitchesComponent } from './manage-pitches/manage-pitches.component';
+import { ManageTagsComponent } from './manage-tags/manage-tags.component';
 
 @NgModule({
     declarations: [
@@ -25,13 +29,18 @@ import { DndModule } from 'ng2-dnd';
         NgxDatatableComponent,
         HomeComponent,
         SearchComponent,
-        PaginationComponent
+        PaginationComponent,
+        MusicSearchComponent,
+        ManagePlaylistsComponent,
+        ManagePitchesComponent,
+        ManageTagsComponent
     ],
     imports: [
         BrowserModule,
         NgxDatatableModule,
         DndModule.forRoot(),
         FormsModule,
+        TreeModule,
         Ng2TableModule,
         HttpClientModule,
         PaginationModule.forRoot(),
@@ -40,8 +49,14 @@ import { DndModule } from 'ng2-dnd';
             path: '',
             component: HomeComponent
         }, {
-            path: 'ng2-table',
-            component: Ng2TableComponent
+            path: 'Digital-Music-Library',
+            component: Ng2TableComponent,
+            children: [
+                { path: 'search', component: MusicSearchComponent},
+                { path: 'Playlists.aspx', component: ManagePlaylistsComponent},
+                { path: 'Pitches.aspx', component: ManagePitchesComponent},
+                { path: 'manage-tags', component: ManageTagsComponent},
+            ]
         }, {
             path: 'ngx-datatable',
             component: NgxDatatableComponent

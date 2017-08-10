@@ -1,0 +1,30 @@
+<div class="col-sm-3">
+    <tree-root [nodes]="nodes" class="zone">
+        <ng-template #treeNodeTemplate let-node let-index="index">
+            <div dnd-droppable (onDropSuccess)="simpleDrop=$event">
+                <span>{{ node.data.name }}</span>
+                <a (click)="newFolder($event)">
+                        <i class="fa fa-folder"></i>
+                    </a>
+                <a (click)="edit($event)">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                <a (click)="delete($event)">
+                        <i class="fa fa-trash"></i>
+                    </a>
+            </div>
+        </ng-template>
+    </tree-root>
+    <pre *ngIf="simpleDrop">{{simpleDrop | json }}</pre>
+</div>
+<div class="col-sm-9">
+    <app-pagination [page]="page" [length]="length" (numPages)="numPages = $event"></app-pagination>
+
+    <ng-template #customRowTpl let-cellClick="cellClick" let-columns="columns" let-getData="getData" let-sanitize="sanitize"
+        let-rows="rows">
+        <tr *ngFor="let row of rows" dnd-draggable [dragEnabled]="true" [dragData]="row">
+            <td *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
+        </tr>
+    </ng-template>
+    <ng-table [config]="config.sorting" (tableChanged)="onChangeTable(config)" [rows]="rows | async" [columns]="columns" [rowTemplate]="customRowTpl"></ng-table>
+</div>
