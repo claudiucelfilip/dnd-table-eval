@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterContentInit, ElementRef } from '@angular/core';
 import { SongsService } from '../songs.service';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { DragDropConfig, DragImage } from 'ng2-dnd';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
+const koModel = require('koModel');
 
 @Component({
     selector: 'app-music-search',
@@ -49,7 +50,7 @@ export class MusicSearchComponent implements OnInit {
         },
         {
             title: 'Flags',
-            name: ''
+            name: 'flags'
         },
         {
             title: 'Version',
@@ -83,14 +84,14 @@ export class MusicSearchComponent implements OnInit {
     };
     public length: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     public page: BehaviorSubject<number> = new BehaviorSubject<number>(1);
-    constructor(private songs: SongsService, config: DragDropConfig) {
+    constructor(private songs: SongsService, config: DragDropConfig, private element: ElementRef) {
         this.page
             .distinctUntilChanged((x, y) => x === y)
             .subscribe((val) => {
                 this.getPage(val);
             });
 
-        let img = document.createElement('img');
+        const img: HTMLImageElement = document.createElement('img');
         img.onload = () => {
             config.dragImage = new DragImage(img);
         };
@@ -98,7 +99,9 @@ export class MusicSearchComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        setTimeout(() => {
+            ko.applyBindings(koModel, this.element.nativeElement);
+        }, 1000);
     }
 
     getPage(page) {

@@ -1,4 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+const ko = require('ko');
+const koModel = require('koModel');
 
 @Component({
     selector: 'app-home',
@@ -6,4 +8,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+    constructor() {
+
+    }
 }

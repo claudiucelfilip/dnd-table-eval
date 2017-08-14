@@ -19,12 +19,35 @@
 </div>
 <div class="col-sm-9">
     <app-pagination [page]="page" [length]="length" (numPages)="numPages = $event"></app-pagination>
+    <h4>The route again (from knockout): <span data-bind="text: route"></span></h4>
+    <ng-template #customHeaderRowTpl let-columns="columns" let-config="config" let-onChangeTable="onChangeTable">
+        <tr role="row" class="custom">
+            <th *ngFor="let column of columns" [ngTableSorting]="config" [column]="column" (sortChanged)="onChangeTable($event)" ngClass="{{column.className || ''}}">
+                <ng-container *ngIf="column.name !== 'flags'">
+                        {{column.title}}
+                        <i *ngIf="config && column.sort" class="pull-right fa" [ngClass]="{'fa-chevron-down': column.sort === 'desc', 'fa-chevron-up': column.sort === 'asc'}"></i>
+                </ng-container>
 
-    <ng-template #customRowTpl let-cellClick="cellClick" let-columns="columns" let-getData="getData" let-sanitize="sanitize"
-        let-rows="rows">
-        <tr *ngFor="let row of rows" dnd-draggable [dragEnabled]="true" [dragData]="row">
+                <ng-container *ngIf="column.name === 'flags'">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown
+                                <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                        </ul>
+                    </div>
+                </ng-container>
+
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template #customRowTpl let-columns="columns" let-getData="getData" let-sanitize="sanitize" let-rows="rows">
+
+        <tr *ngFor="let row of rows" dnd-draggable [dragEnabled]="true" [dragData]="row" attr.data-bind="click: playSong.bind($data, {{row | json}})">
             <td *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
         </tr>
     </ng-template>
-    <ng-table [config]="config.sorting" (tableChanged)="onChangeTable(config)" [rows]="rows | async" [columns]="columns" [rowTemplate]="customRowTpl"></ng-table>
+    <ng-table [config]="config.sorting" [rows]="rows | async" [columns]="columns" [rowTemplate]="customRowTpl" [headerRowTemplate]="customHeaderRowTpl"></ng-table>
 </div>

@@ -1,0 +1,9 @@
+<app-search></app-search>
+<app-pagination [page]="page" [length]="length" (numPages)="numPages = $event"></app-pagination>
+<br/>
+<ag-grid-angular #agGrid style="width: 100%; height: 150px;" class="ag-fresh"
+    [gridOptions]="gridOptions"
+    [columnDefs]="columns"
+    (rowClicked)="onRowClicked($event)"
+    [rowData]="rows | async">
+</ag-grid-angular>

@@ -8,6 +8,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule } from '@angular/forms';
 
 import { Ng2TableModule } from 'ng2-table/ng2-table';
+import { AgGridModule } from 'ag-grid-angular/main';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +22,7 @@ import { MusicSearchComponent } from './music-search/music-search.component';
 import { ManagePlaylistsComponent } from './manage-playlists/manage-playlists.component';
 import { ManagePitchesComponent } from './manage-pitches/manage-pitches.component';
 import { ManageTagsComponent } from './manage-tags/manage-tags.component';
+import { AgGridComponent } from './ag-grid/ag-grid.component';
 
 @NgModule({
     declarations: [
@@ -33,13 +35,15 @@ import { ManageTagsComponent } from './manage-tags/manage-tags.component';
         MusicSearchComponent,
         ManagePlaylistsComponent,
         ManagePitchesComponent,
-        ManageTagsComponent
+        ManageTagsComponent,
+        AgGridComponent
     ],
     imports: [
         BrowserModule,
         NgxDatatableModule,
         DndModule.forRoot(),
         FormsModule,
+        AgGridModule.withComponents([]),
         TreeModule,
         Ng2TableModule,
         HttpClientModule,
@@ -52,14 +56,17 @@ import { ManageTagsComponent } from './manage-tags/manage-tags.component';
             path: 'Digital-Music-Library',
             component: Ng2TableComponent,
             children: [
-                { path: 'search', component: MusicSearchComponent},
-                { path: 'Playlists.aspx', component: ManagePlaylistsComponent},
-                { path: 'Pitches.aspx', component: ManagePitchesComponent},
-                { path: 'manage-tags', component: ManageTagsComponent},
+                { path: 'search', component: MusicSearchComponent },
+                { path: 'Playlists.aspx', component: ManagePlaylistsComponent },
+                { path: 'Pitches.aspx', component: ManagePitchesComponent },
+                { path: 'manage-tags', component: ManageTagsComponent },
             ]
         }, {
             path: 'ngx-datatable',
             component: NgxDatatableComponent
+        }, {
+            path: 'ag-grid',
+            component: AgGridComponent
         }])
     ],
     providers: [SongsService],
