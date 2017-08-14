@@ -3,7 +3,7 @@ A short evaluation on how to implement current Songs features in Angular 2
 
 ### Considerations 
 
-##### Table Component
+#### Table Component
 - customizable rows
 - customizable cells
 - customizable headers
@@ -46,7 +46,7 @@ A good solution to construct upon. Few features but easy to implement new ones.
   Similar to ng2-table but has a feature we won’t be using: inline editing. 
 
 
-##### Drag and Drop Component
+#### Drag and Drop Component
 - transfer data to dropzone
 - customizable drag image
 
@@ -67,22 +67,22 @@ Went through 3 dnd components:
   * Different use case; used for swapping items between lists
 
 
-##### Dropdown
-##### Tabs
-##### Pagination
+#### Dropdown
+#### Tabs
+#### Pagination
 Will use boostrap for these 3
 
-##### Directory Tree Component
+#### Directory Tree Component
 * customizable actions
 * **angular-tree-component** https://github.com/500tech/angular-tree-component
   * the perfect solution; good documentation and good templating features covers all the needs.
 
 
-##### Knockout support
+#### Knockout support
 * bidirectional communication
 Integration is straight forward. Components need to execute ko.applyBindings when they finish rendering.
 
-##### Server-side rendering
+#### Server-side rendering
 
 ### Installation
 
