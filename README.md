@@ -70,6 +70,7 @@ Went through 3 dnd components:
 #### Dropdown
 #### Tabs
 #### Pagination
+#### Accordion
 Will use boostrap for these 3
 
 #### Directory Tree Component
